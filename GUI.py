@@ -13,20 +13,24 @@ window = sg.Window('My To-Do App',
 
 while True:
     event, value = window.read()
-    # print(event)
-    # print(value)
+    print(event)
+    print(value)
     match event:
         case "Add":
             todos = get_todos()
             todo = value['todo']
             todos.append(todo + "\n")
             write_file(todos)
+            window['todos'].update(todos)
         case "Edit":
             todo = value['todos'][0]
             todos = get_todos()
             todo_to_edit = todos.index(todo)
             todos[todo_to_edit] = value['todo'] + "\n"
             write_file(todos)
+            window['todos'].update(todos)
+        case "todos":
+            window['todo'].update(value=value['todos'][0])
         case sg.WINDOW_CLOSED:
             break
 
