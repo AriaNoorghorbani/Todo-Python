@@ -1,6 +1,13 @@
 import PySimpleGUI as sg
 import time
+import os
 from functions import get_todos, write_file
+
+check_exist_file = os.path.exists('todos.txt')
+
+if not os.path.exists('todos.txt'):
+    with open('todos.txt', 'w') as file:
+        pass
 
 sg.theme('black')
 
@@ -51,7 +58,8 @@ while True:
                 sg.popup("Please chose a todo", font=["Helvetica", "17"])
                 continue
         case "todos":
-            window['todo'].update(value=value['todos'][0])
+            fill_input =value['todos'][0].strip()
+            window['todo'].update(value=fill_input)
         case "Complete":
             try:
                 completed_todo = value['todo']
