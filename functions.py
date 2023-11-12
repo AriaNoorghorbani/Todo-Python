@@ -16,3 +16,8 @@ def show_todo(todos):
     for index, item in enumerate(todos):
         new_item = item.strip('\n')
         print(f"{index + 1}. {new_item}")
+
+def complete_todo(todos, todo):
+    for item in todos:
+        if item == todo:
+            todos.remove(item)
